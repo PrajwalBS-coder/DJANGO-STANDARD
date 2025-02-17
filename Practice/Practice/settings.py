@@ -170,6 +170,12 @@ SWAGGER_SETTINGS = {
         }
     },
     'USE_SESSION_AUTH': False,
+    'LOGIN_URL': '/auth/token/generate/', 
+    'DEFAULT_MODEL_DEPTH': -1,
+    'TAGS_SORTER': 'alpha',
+    'OPERATIONS_SORTER': 'alpha',
+    'DEEP_LINKING': True,
+    'PERSIST_AUTH': True,#Ensures authentication tokens persist in Swagger UI even after a page refresh.This avoids the need to re-authenticate every time you reload the page.
 }
 
 
