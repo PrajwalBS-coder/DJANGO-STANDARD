@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'django_filters',
+    'apps.app2',
+    'apps.app3',
+    'apps.app4'
 ]
 
 
