@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path,include
 from Practice.swagger import schema_view
 from app1.urls import *
+from apps.app2.urls import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger/', schema_view.with_ui('swagger',
                                          cache_timeout=0), name='schema-swagger-ui'),
-    path('super/',include('app1.urls'),name='admin'),
+    path('/',include('app1.urls'),name='admin'),
+    path("user/",include('apps.app2.urls'),name='admin'),
 ]
