@@ -24,11 +24,10 @@ class Employee(models.Model):
     email =models.EmailField(unique=True)
     age = models.PositiveIntegerField(validators=[MaxValueValidator(50)])
     gender = models.CharField(choices= gender_choices,max_length=1)
-    salary = models.DecimalField(max_digits=10,decimal_places=3,validators=[MinValueValidator(10000)])
+    salary = models.DecimalField(max_digits=10,decimal_places=3)
     date_joined = models.DateField(default=now)
     is_active  = models.BooleanField(default= True)
-
-
+    role = models.CharField(choices=Roles,max_length=3)
     def __str__(self):
         return self.name
     

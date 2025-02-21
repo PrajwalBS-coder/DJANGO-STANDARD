@@ -182,3 +182,5 @@ SWAGGER_SETTINGS = {
 }
 
 
+TIME_ZONE = 'Asia/Kolkata'  # Set this to your local timezone
+USE_TZ = True  # Keep Django using time zone support
