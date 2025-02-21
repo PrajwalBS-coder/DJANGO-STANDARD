@@ -8,13 +8,17 @@ class Add_user(viewsets.generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         context ={}
+        state=status.HTTP_201_CREATED
         try:
             serializer = self.get_serializer(data=request.data)
             if serializer.is_valid():
                 serializer.save()
                 context["data"]=serializer.data
                 context["message"]="User added successfully"
-            context['error'] = 'Invalid data'
+            else:
+                context['error'] = 'Invalid data'
+                state=status.HTTP_400_BAD_REQUEST
         except Exception as e:
-            return response.Response({"message": str(e)}, status=status.HTTP_400_BAD_REQUEST)
-        return response.Response(context, status=status.HTTP_201_CREATED)
+            context["message"]= str(e)
+            state=status.HTTP_400_BAD_REQUEST
+        return response.Response(context, state)

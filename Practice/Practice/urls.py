@@ -19,11 +19,16 @@ from django.urls import path,include
 from Practice.swagger import schema_view
 from app1.urls import *
 from apps.app2.urls import *
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView, TokenRefreshView
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('swagger/', schema_view.with_ui('swagger',
                                          cache_timeout=0), name='schema-swagger-ui'),
-    path('/',include('app1.urls'),name='admin'),
+    path('app/',include('app1.urls'),name='admin'),
     path("user/",include('apps.app2.urls'),name='admin'),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
