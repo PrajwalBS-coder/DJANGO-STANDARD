@@ -4,6 +4,8 @@ __pycache__/
 
 # Ignore environment variables and virtual environment
 .env
+.exe
+.bat
 venv/
 *.venv/
 
