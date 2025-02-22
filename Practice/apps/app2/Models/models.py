@@ -28,6 +28,7 @@ class Employee(models.Model):
     date_joined = models.DateField(default=now)
     is_active  = models.BooleanField(default= True)
     role = models.CharField(choices=Roles,max_length=3)
+    meta_data = models.JSONField(default=dict)
     def __str__(self):
         return self.name
     
