@@ -60,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app1.middleware.APILoggingMiddleware',  # Add this line
 ]
 
 ROOT_URLCONF = 'Practice.urls'
@@ -184,3 +185,60 @@ SWAGGER_SETTINGS = {
 
 TIME_ZONE = 'Asia/Kolkata'  # Set this to your local timezone
 USE_TZ = True  # Keep Django using time zone support
+
+
+
+
+import os
+
+# Ensure logs directory exists
+LOG_DIR = "logs"
+os.makedirs(LOG_DIR, exist_ok=True)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'api_formatter': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+
+    'handlers': {
+        'file': {  # General debug log
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(LOG_DIR, 'debug.log'),
+            'formatter': 'verbose',
+            'level': 'DEBUG',
+            'maxBytes': 1024 * 1024 * 5,  # 5MB per file
+            'backupCount': 3,
+        },
+        'api_file': {  # Separate API log
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': os.path.join(LOG_DIR, 'api.log'),
+            'formatter': 'api_formatter',
+            'level': 'INFO',
+            'maxBytes': 1024 * 1024 * 5,  # 5MB per file
+            'backupCount': 3,
+        },
+    },
+
+    'loggers': {
+        'django': {  # General Django logs
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+        'api_logger': {  # Custom API logger
+            'handlers': ['api_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}

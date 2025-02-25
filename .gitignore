@@ -27,6 +27,8 @@ static/
 # Ignore compiled code and cache files
 *.pyc
 *.pyo
+*.cpython
+
 
 # Ignore node_modules (if using frontend inside Django)
 node_modules/
