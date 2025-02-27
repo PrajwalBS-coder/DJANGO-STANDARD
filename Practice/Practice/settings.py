@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django_filters',
     'apps.app2',
     'apps.app3',
-    'apps.app4'
+    'apps.app4',
+    'django_cron',
 ]
 
 
