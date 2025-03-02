@@ -48,7 +48,9 @@ INSTALLED_APPS = [
     'django_filters',
     'apps.app2',
     'apps.app3',
-    'apps.app4'
+    'apps.app4',
+    'django_celery_beat',
+   
 ]
 
 
@@ -242,3 +244,19 @@ LOGGING = {
         },
     },
 }
+
+
+# # Celery settings
+# CELERY_BROKER_URL = "redis://localhost:6379"
+# CELERY_RESULT_BACKEND = "redis://localhost:6379"
+
+# settings.py
+CELERY_BROKER_URL = 'redis://localhost:6379/0'  # Replace with your Redis URL
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Replace with your Redis URL
+CELERY_TIMEZONE = 'Asia/Kolkata'
+
+
+
+
+# settings.py
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
