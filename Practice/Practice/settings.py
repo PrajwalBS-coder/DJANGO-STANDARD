@@ -256,7 +256,5 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Replace with your Redis UR
 CELERY_TIMEZONE = 'Asia/Kolkata'
 
 
-
-
 # settings.py
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
