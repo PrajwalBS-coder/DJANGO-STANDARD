@@ -28,7 +28,7 @@ static/
 *.pyc
 *.pyo
 *.cpython
-
+*.cpython-312.pyc
 
 # Ignore node_modules (if using frontend inside Django)
 node_modules/
