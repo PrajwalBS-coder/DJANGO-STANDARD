@@ -157,7 +157,7 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
@@ -258,3 +258,10 @@ CELERY_TIMEZONE = 'Asia/Kolkata'
 
 # settings.py
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+#email
+email={
+    'backend': 'django.core.mail.backends.smtp.EmailBackend',
+    'host': 'smtp.gmail.com',
+    'port': 587,
+    'username': env['email']}
