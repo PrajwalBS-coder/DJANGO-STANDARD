@@ -263,9 +263,9 @@ CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 #email
-email={
-    'backend': 'django.core.mail.backends.smtp.EmailBackend',
-    'host': 'smtp.gmail.com',
-    'port': 587,
-    'username': os.getenv('email'),
-    'password': os.getenv('password'),}
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
