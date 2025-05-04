@@ -6,6 +6,8 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from app1.Serializers import LoginSerializer
 from rest_framework.permissions import AllowAny
+from rest_framework.authentication import authenticate
+from rest_framework.exceptions import ValidationError
 
 @swagger_auto_schema(
     operation_id= 'User Login',
@@ -37,19 +39,27 @@ class Login(GenericAPIView):
     serializer_class = LoginSerializer.LoginSerializer
     def post(self,request):
         context = {}
-        username=request.data.get('username')
-        password = request.data.get('password')
+        status_code = status.HTTP_200_OK
+        try:
+            username=request.data.get('username')
+            password = request.data.get('password')
+            if not username or not password:
+                raise ValidationError("Username and password are required.")
+            user=authenticate(username=username,password=password)
+            #refresh token
+            if not user:
+                context['message'] = 'Invalid credentials'
+                status_code=status.HTTP_400_BAD_REQUEST
+                return response.Response(context,status = status_code)
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+            context['access_token']=access_token
+            context['refrtesh_token']=str(refresh)
+        except User.DoesNotExist:
+            context['message'] = 'User does not exist'
+            status_code=status.HTTP_400_BAD_REQUEST
 
-        user=User.objects.filter(username=username).first()
-
-
-        #refresh token
-        refresh = RefreshToken.for_user(user)
-        access_token = str(refresh.access_token)
-        context['access_token']=access_token
-        context['refrtesh_token']=str(refresh)
-
-        return response.Response(context)
+        return response.Response(context,status = status_code)
 
 
 
