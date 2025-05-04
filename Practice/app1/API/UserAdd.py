@@ -7,7 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 from django.conf import settings
 from django.core.mail import send_mail
-
+from django.template.loader import render_to_string
 
 @swagger_auto_schema(
     request_body=User_Serializer,
@@ -30,14 +30,16 @@ class CreateUser(CreateAPIView):
         message = f'Hi {user.username},\n\nThank you for registering with us. Your account has been successfully created.\n\nBest regards,\nThe Team'
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [user.email]
+        html_message = render_to_string('Account/useradd.html', {'user': user,'login_url':'http://127.0.0.1:8000/app/user-login/'})
         
         try:
             send_mail(
-                subject,
-                message,
-                from_email,
-                recipient_list,
-                # fail_silently=False,
+                subject=subject,
+                message=message,  # Plain text version is required
+                from_email=from_email,
+                recipient_list=recipient_list,
+                html_message=html_message,
+                fail_silently=False,
             )
         except Exception as e:
             import logging
