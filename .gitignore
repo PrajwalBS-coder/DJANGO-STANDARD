@@ -44,3 +44,4 @@ settings_secret.py
 # Ignore executable files
 *.exe
 ../dotenv.exe
+../django-admin.exe
