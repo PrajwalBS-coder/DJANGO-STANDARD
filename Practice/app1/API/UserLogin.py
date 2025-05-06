@@ -60,6 +60,3 @@ class Login(GenericAPIView):
             status_code=status.HTTP_400_BAD_REQUEST
 
         return response.Response(context,status = status_code)
-
-
-
