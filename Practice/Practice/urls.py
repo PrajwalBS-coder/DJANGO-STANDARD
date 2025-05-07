@@ -15,21 +15,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from Practice.swagger import schema_view
-from app1.urls import *
-from apps.app2.urls import *
 from rest_framework_simplejwt.views import (
     TokenObtainPairView, TokenRefreshView
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('swagger/', schema_view.with_ui('swagger',
-                                         cache_timeout=0), name='schema-swagger-ui'),
-    path('app/',include('app1.urls'),name='admin'),
-    path("user/",include('apps.app2.urls'),name='admin'),
-    path("user/",include('apps.app3.urls'),name='admin'),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+    path('api/schema/', schema_view.without_ui(cache_timeout=0), name='schema'),
+    path('app/', include('app1.urls'), name='app1'),
+    path("user/", include('apps.app2.urls'), name='app2'),
+    path("prediction/", include('apps.app3.urls'), name='prediction'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]

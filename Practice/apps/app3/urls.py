@@ -1,6 +1,6 @@
 from django.urls import path
-from apps.app3.API.prediction import Get_Predictions
+from apps.app3.API.prediction import GetPredictions
 
 urlpatterns = [
-    path('prediction/',Get_Predictions.as_view(),name='prediction')
+    path('prediction/',GetPredictions.as_view(),name='prediction'),
 ]
