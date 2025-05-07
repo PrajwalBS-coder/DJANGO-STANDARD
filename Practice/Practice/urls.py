@@ -29,6 +29,7 @@ urlpatterns = [
                                          cache_timeout=0), name='schema-swagger-ui'),
     path('app/',include('app1.urls'),name='admin'),
     path("user/",include('apps.app2.urls'),name='admin'),
+    path("user/",include('apps.app3.urls'),name='admin'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
