@@ -28,7 +28,7 @@ class GetPredictions(GenericAPIView):
             status.HTTP_500_INTERNAL_SERVER_ERROR: openapi.Response("Server error")
         }
     )
-    def get(self, request):
+    def post(self, request):
         try:
             prediction_type = request.data.get('type')
             if not prediction_type:
