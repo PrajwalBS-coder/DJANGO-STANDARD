@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'apps.app3',
     'apps.app4',
     'django_celery_beat',
+    'rest_framework_simplejwt.token_blacklist',
+    
    
 ]
 
@@ -163,7 +165,8 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
-    'BLACKLIST_AFTER_ROTATION': False,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'BLACKLIST_TOKEN_CHECKS': ['access', 'refresh'],
     'AUTH_HEADER_TYPES': ('Bearer',),
     'UPDATE_LAST_LOGIN' : True,
     'AUTH_HEADER_NAME' : "HTTP_AUTHORIZATION"
