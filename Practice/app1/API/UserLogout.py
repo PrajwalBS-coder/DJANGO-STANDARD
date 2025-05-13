@@ -39,9 +39,9 @@ class LogOut(APIView):
                 context['error'] = "Refresh token is required"
                 return response.Response(context, status=status.HTTP_400_BAD_REQUEST)
 
-            # if not auth_header.startswith('Bearer '):
-            #     context['error'] = "Authorization header with Bearer token is required"
-            #     return response.Response(context, status=status.HTTP_400_BAD_REQUEST)
+            if not auth_header.startswith('Bearer '):
+                context['error'] = "Authorization header with Bearer token is required"
+                return response.Response(context, status=status.HTTP_400_BAD_REQUEST)
 
             # Optional: blacklist refresh token only
             RefreshToken(refresh_token).blacklist()
