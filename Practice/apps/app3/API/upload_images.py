@@ -15,16 +15,15 @@ class Upload_Image(APIView):
     MAX_FILE_SIZE = 5 * 1024 * 1024  # 5MB limit
 
     @swagger_auto_schema(
-        request_body=openapi.Schema(
-            type=openapi.TYPE_OBJECT,
-            properties={
-                'image': openapi.Schema(
-                    type=openapi.TYPE_FILE,
-                    description='Image file to upload (JPG, PNG, JPEG)'
-                )
-            },
-            required=['image']
-        ),
+        manual_parameters=[
+            openapi.Parameter(
+                name='image',
+                in_=openapi.IN_FORM,
+                type=openapi.TYPE_FILE,
+                description='Image file to upload (JPG, PNG, JPEG)',
+                required=True
+            )
+        ],
         responses={
             200: openapi.Response(description='Image uploaded successfully'),
             400: "Bad Request - Invalid file type or no file provided",
@@ -35,6 +34,7 @@ class Upload_Image(APIView):
         operation_id="USER-IMAGE-UPLOAD-API"
     )
     def post(self, request):
+        # your existing logic
         try:
             image = request.FILES.get('image')
             
