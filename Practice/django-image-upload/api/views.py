@@ -2,9 +2,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import ImageSerializer
-from .models import ImageModel
+from rest_framework.parsers import MultiPartParser, FormParser
+
+# from .models import ImageModel
+from ..models import ImageModel
 
 class UploadImageView(APIView):
+    parser_classes = [MultiPartParser, FormParser]
+
     def post(self, request):
         serializer = ImageSerializer(data=request.data)
         if serializer.is_valid():

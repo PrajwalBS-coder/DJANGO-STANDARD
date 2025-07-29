@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'apps.app4',
     'django_celery_beat',
     'rest_framework_simplejwt.token_blacklist',
+    'django-image-upload',
     
    
 ]
@@ -272,3 +273,6 @@ EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
