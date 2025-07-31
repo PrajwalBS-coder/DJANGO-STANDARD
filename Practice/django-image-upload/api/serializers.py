@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from ..models import ImageModel  # Adjust import as needed
-
+from apps.app2.Models.models import ImageModel
 import mimetypes
 
 class ImageSerializer(serializers.ModelSerializer):

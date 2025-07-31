@@ -4,9 +4,6 @@ from rest_framework import status
 from .serializers import ImageSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
 
-# from .models import ImageModel
-from ..models import ImageModel
-
 class UploadImageView(APIView):
     parser_classes = [MultiPartParser, FormParser]
 

@@ -12,4 +12,4 @@ class Images(models.Model):
                             blank=True,
                             verbose_name='Image Files')
     def __str__(self):
-        return self.name
+        return str(self.name)

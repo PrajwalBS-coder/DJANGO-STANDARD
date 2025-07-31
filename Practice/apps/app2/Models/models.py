@@ -38,9 +38,6 @@ class Employee(models.Model):
         verbose_name_plural = _('Employee')
 
 
-
-from django.db import models
-
 class ImageModel(models.Model):
     image = models.ImageField(upload_to='uploads/images/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
