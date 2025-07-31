@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'apps.app4',
     'django_celery_beat',
     'rest_framework_simplejwt.token_blacklist',
-    'django-image-upload',
     
    
 ]
