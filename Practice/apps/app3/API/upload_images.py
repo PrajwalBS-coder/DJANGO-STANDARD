@@ -31,7 +31,10 @@ class UploadImageView(APIView):
         }
     )
     def post(self, request):
+        data = request.data.copy()
+        data['file'] = request.FILES.get('image')
         serializer = ImageSerializer(data=request.data)
+        print(serializer)
         if serializer.is_valid():
             image_instance = serializer.save()
             return Response({
