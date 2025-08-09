@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'apps.app4',
     'django_celery_beat',
     'rest_framework_simplejwt.token_blacklist',
+    'silk',  # Django Silk for profiling
     
    
 ]
@@ -68,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'app1.middleware.APILoggingMiddleware',  # Add this line
+    'silk.middleware.SilkyMiddleware',  # Middleware for Django Silk
 ]
 
 ROOT_URLCONF = 'Practice.urls'
