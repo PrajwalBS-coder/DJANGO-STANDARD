@@ -35,4 +35,5 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     # path('images',include('django-image-upload.api.urls'),name='images_upload' ),
+    path('silk/',include("silk.urls"),name="silk")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
